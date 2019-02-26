@@ -123,7 +123,7 @@ def main():
     polinom = generate_polinom(new_table, x)
     print('P' + str(n) + '(' + str(x) + ') = ' + str(polinom))
 
-    print('Погрешность метода:', polinom / function(x) * 100)
+    print('Погрешность метода:', (function(x) - polinom) / function(x) * 100)
 
 
 if __name__ == '__main__':
