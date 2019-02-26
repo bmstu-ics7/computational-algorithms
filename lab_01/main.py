@@ -1,12 +1,12 @@
 from math import cos, sin, pi
 
 
-def f(x):
+def function(x):
     # return x * x
     return cos(90 * x / 57.2958)
 
 
-def create_table():
+def create_table(f):
     print("Построение таблицы:")
     start = float(input("Введите начальное значение x: "))
     finish = float(input("Введите конечное значение x: "))
@@ -21,6 +21,11 @@ def create_table():
         start += step
 
     return table
+
+
+def print_table(table):
+    for i in range(len(table[0])):
+        print("{:3}{:8.3f} {:8.3f}".format(i + 1, table[0][i], table[1][i]))
 
 
 def find_start(table, x, n):
@@ -103,9 +108,8 @@ def generate_polinom(table, x):
     return result
 
 def main():
-    table = create_table()
-    for i in range(len(table[0])):
-        print("{:3}{:8.3f} {:8.3f}".format(i + 1, table[0][i], table[1][i]))
+    table = create_table(function)
+    print_table(table)
 
     n = int(input("Введите степень полинома: "))
 
