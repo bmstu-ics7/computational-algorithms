@@ -89,7 +89,7 @@ def generate_polinom(table, x):
         coeff.append(table[i][j])
         j += 1
 
-    polinom = ''
+    polinom = 'P' + str(len(table) // 2) + ' = '
     result = 0
     for i in range(len(coeff)):
         if i > 0:
@@ -111,18 +111,21 @@ def main():
     table = create_table(function)
     print_table(table)
 
-    n = int(input("Введите степень полинома: "))
+    n = int(input('Введите степень полинома: '))
 
     if n >= len(table[0]):
-        print("Степень полинома слишком большая")
+        print('Степень полинома слишком большая')
         return
 
-    x = float(input("Введите значение x: "))
+    x = float(input('Введите значение x: '))
     new_table = approximation(table, x, n)
     print_approximation(new_table)
-    print(generate_polinom(new_table, x))
+    polinom = generate_polinom(new_table, x)
+    print('P' + str(n) + '(' + str(x) + ') = ' + str(polinom))
+
+    print('Погрешность метода:', polinom / function(x) * 100)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
 
