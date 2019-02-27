@@ -2,8 +2,8 @@ from math import cos, sin, pi
 
 
 def function(x):
-    # return x * x
-    return cos(90 * x / 57.2958)
+    return x * x
+    # return cos(90 * x / 57.2958)
 
 
 def create_table(f):
@@ -25,7 +25,7 @@ def create_table(f):
 
 def print_table(table):
     for i in range(len(table[0])):
-        print("{:3}{:8.3f} {:8.3f}".format(i + 1, table[0][i], table[1][i]))
+        print("{:3}{:15.5f} {:15.5f}".format(i + 1, table[0][i], table[1][i]))
 
 
 def find_start(table, x, n):
@@ -104,12 +104,16 @@ def generate_polinom(table, x):
 
         result += current
 
+        if i < len(coeff) - 1:
+            polinom += ' +\n'
+
     print(polinom)
     return result
 
 def main():
     table = create_table(function)
     print_table(table)
+    print()
 
     n = int(input('Введите степень полинома: '))
 
@@ -118,9 +122,15 @@ def main():
         return
 
     x = float(input('Введите значение x: '))
+    print()
+
     new_table = approximation(table, x, n)
     print_approximation(new_table)
+    print()
+
     polinom = generate_polinom(new_table, x)
+    print()
+
     print('P' + str(n) + '(' + str(x) + ') = ' + str(polinom))
 
     print('Погрешность метода:', (function(x) - polinom) / function(x) * 100)
