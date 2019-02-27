@@ -38,10 +38,10 @@ def find_start(table, x, n):
     if start == -1:
         start = len(table[0]) - n + 1
 
-    if start <= (n + 1) // 2:
+    if start <= (n + 1) // 2 - 1:
         start = 0
     else:
-        start -= (n + 1) // 2
+        start -= (n + 1) // 2 - 1
 
     if len(table[0]) - start < (n + 1) // 2:
         start = len(table[0]) - (n + 1) // 2
@@ -132,8 +132,9 @@ def main():
     print()
 
     print('P' + str(n) + '(' + str(x) + ') = ' + str(polinom))
+    print('f(' + str(x) + ') = ' + str(function(x)))
 
-    print('Погрешность метода:', (function(x) - polinom) / function(x) * 100)
+    print('Погрешность метода: {:.4f}'.format((function(x) - polinom) / function(x) * 100))
 
 
 if __name__ == '__main__':
