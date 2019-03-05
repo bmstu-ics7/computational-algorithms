@@ -114,7 +114,7 @@ def main():
     table = create_table(function)
     print_table(table)
 
-    x = int(input("Введите x: "))
+    x = float(input("Введите x: "))
 
     value = spline(x, table)
     print("phi(" + str(x) + ") = " + str(value))
