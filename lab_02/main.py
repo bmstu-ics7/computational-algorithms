@@ -1,4 +1,4 @@
-from math import cos, sin, pi
+from math import cos, sin, pi, fabs
 X = 0
 Y = 1
 
@@ -67,7 +67,7 @@ def spline(x, table):
         A = prev_h
         B = -2 * (prev_h + current_h)
         D = current_h
-        F = -3 * ( (current_y - prev_y) / current_h - (prev_y - table[Y][i - 2]) / prev_h )
+        F = -3 * ( ((current_y - prev_y) / current_h) - ((prev_y - table[Y][i - 2]) / prev_h) )
 
         current_xi, current_eta = next_xi, next_eta
         next_xi = D / (B - A * current_xi)
@@ -106,20 +106,23 @@ def spline(x, table):
     for i in range(1, N):
         if (table[X][i] > x):
             index = i - 1
+            break
 
-    return a[index + 1] + b[index + 1] * (x - table[X][index]) + c[index + 1] * (x - table[X][index]) ** 2 + d[index + 1] * (x - table[X][index]) ** 3
+    return a[index] + b[index] * (x - table[X][index - 1]) + c[index] * (x - table[X][index - 1]) ** 2 + d[index] * (x - table[X][index - 1]) ** 3
 
 
 def main():
     table = create_table(function)
+    #table = create_table_file(function)
     print_table(table)
+    print()
 
     x = float(input("Введите x: "))
 
     value = spline(x, table)
     print("phi(" + str(x) + ") = " + str(value))
     print("f(" + str(x) + ") = " + str(function(x)))
-    print("Погрешность метода: {:.4f}".format((function(x) - value) / function(x) * 100) )
+    print("Погрешность метода: {:.4f}".format(fabs(function(x) - value) / function(x) * 100) )
 
 
 if __name__ == '__main__':
