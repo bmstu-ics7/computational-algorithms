@@ -141,6 +141,8 @@ def polynomial(table, x, n_x, y, n_y):
 
 def main():
     table = create_table(function)
+    print()
+
     print_table(table)
     print()
 
