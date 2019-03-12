@@ -142,17 +142,21 @@ def polynomial(table, x, n_x, y, n_y):
 def main():
     table = create_table(function)
     print_table(table)
+    print()
 
     n_x = int(input('Введите степень полинома для x: '))
     n_y = int(input('Введите степень полинома для y: '))
     x = float(input('Введите x: '))
     y = float(input('Введите y: '))
+    print()
 
     z = polynomial(table, x, n_x, y, n_y)
     f = function(x, y)
+    print()
+
     print('P({:.2f}; {:.2f}) = {:.5f}'.format(x, y, z))
     print('f({:.2f}; {:.2f}) = {:.5f}'.format(x, y, f))
-    print('Погрешность: {}'.format(abs(z - f) / (f) * 100))
+    print('Погрешность: {:1.3e}'.format(abs(z - f) / (f) * 100))
 
     return 0
 
