@@ -42,7 +42,7 @@ def print_table(table):
 
     print()
     print(end = '─' * 10 + '┼')
-    print('─' * (10 * len(table[X])))
+    print('─' * (10 * len(table[Y])))
 
     for i in range(len(table[X])):
         print('{:<10.3f}│'.format(table[X][i]), end = '')
