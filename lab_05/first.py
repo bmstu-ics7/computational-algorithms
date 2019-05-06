@@ -3,12 +3,17 @@ def find_root(f, start, finish, eps):
         start, finish = finish, start
     left = start
     right = finish
+    left_function = f(left)
+    right_function = f(right)
     while right - left >= eps:
         mid = (right + left) / 2
-        if f(left) * f(mid) <= 0:
+        mid_function = f(mid)
+        if left_function * mid_function <= 0:
             right = mid
+            right_function = mid_function
             continue
         left = mid
+        left_function = mid_function
     return (right + left) / 2
 
 
