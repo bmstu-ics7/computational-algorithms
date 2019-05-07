@@ -1,4 +1,4 @@
-import spline
+import interpolation
 import first
 from math import exp, fabs, log
 
@@ -16,27 +16,12 @@ x_global = [-5, 3, -2, -15, -40, -70]
 
 
 
-def spline(v, table):
-    x = table[0]
-    y = table[1]
-    def product( val, n ):
-        mul = 1
-        for i in range(n):
-            if i: mul *= val - x[i-1]
-            yield mul
-    C=[]
-    for n in range(len(x)):
-        p = product( x[n], n+1 )
-        C.append( (y[n]-sum(C[k]*next(p) for k in range(n)) )/next(p) )
-    return sum( C[k]*p for k, p in enumerate(product(v, len(C)) ) )
-
-
-
 def Q(i, T):
     table = []
     table.append(Q_table[0])
     table.append(Q_table[i])
-    return spline(T, table)
+    new_table = interpolation.approximation(table, T, 8)
+    return interpolation.generate_polinom(new_table, T)
 
 
 
