@@ -24,7 +24,7 @@ def spline(v, table):
         for i in range(n):
             if i: mul *= val - x[i-1]
             yield mul
-    C=[] 
+    C=[]
     for n in range(len(x)):
         p = product( x[n], n+1 )
         C.append( (y[n]-sum(C[k]*next(p) for k in range(n)) )/next(p) )
@@ -155,23 +155,23 @@ def P(p_start, t_start, t0, t2, m, z, p):
     while fabs(x_old[0] - x_global[0]) >= 1e-4:
         for i in range(len(x_global)):
             x_old[i] = x_global[i]
-        mat = [[1, -1, 1, 0, 0, 0], 
-           [1, 0, -1, 1, 0, 0], 
-           [1, 0, 0, -1, 1, 0], 
-           [1, 0, 0, 0, -1, 1], 
+        mat = [[1, -1, 1, 0, 0, 0],
+           [1, 0, -1, 1, 0, 0],
+           [1, 0, 0, -1, 1, 0],
+           [1, 0, 0, 0, -1, 1],
            [
-               exp(x_old[0]), 
-               0, 
-               -exp(x_old[2]), 
-               -2 * exp(x_old[3]), 
-               -3 * exp(x_old[4]), 
+               exp(x_old[0]),
+               0,
+               -exp(x_old[2]),
+               -2 * exp(x_old[3]),
+               -3 * exp(x_old[4]),
                -4 * exp(x_old[5])],
            [
-               -exp(x_old[0]), 
-               -exp(x_old[1]), 
-               -exp(x_old[2]), 
-               -exp(x_old[3]), 
-               -exp(x_old[4]), 
+               -exp(x_old[0]),
+               -exp(x_old[1]),
+               -exp(x_old[2]),
+               -exp(x_old[3]),
+               -exp(x_old[4]),
                -exp(x_old[5])]]
         w = get_inverse(mat)
         fun = equations(x_old, T, p)
