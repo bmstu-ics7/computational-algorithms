@@ -84,19 +84,6 @@ def Gamma(G, T, val):
 
 def find_gamma(T, val):
     return first.find_root(lambda G: Gamma(G, T, val), 0, 2, 1e-4)
-    left = 0
-    right = 2
-    eps = 1e-4
-    while right - left >= eps:
-        l = Gamma(left, T, val)
-        r = Gamma(right, T, val)
-        mid = (right + left) / 2
-        m = Gamma(mid, T, val)
-        if m * r <= 0:
-            right = mid
-            continue
-        left = mid
-    return left
 
 
 
