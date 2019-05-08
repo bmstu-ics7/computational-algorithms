@@ -106,12 +106,12 @@ def print_table(table):
 
     print('│{:^10}'.format('x'), end = '')
     print('│{:^10}'.format('y'), end = '')
-    print('│{:^10}'.format("y'"), end = '')
     print('│{:^10}'.format("left"), end = '')
     print('│{:^10}'.format('edge'), end = '')
     print('│{:^10}'.format('central'), end = '')
     print('│{:^10}'.format('Rynge'), end = '')
-    print('│{:^10}│'.format('var'))
+    print('│{:^10}'.format('var'), end = '')
+    print('│{:^10}│'.format("y'"))
 
     print('├' + '─' * 10, end = '')
     for i in range(len(table) - 2):
@@ -121,7 +121,6 @@ def print_table(table):
     for i in range(len(table[0])):
         print('│{:^10.4f}'.format(table[0][i]), end = '')
         print('│{:^10.4f}'.format(table[1][i]), end = '')
-        print('│{:^10.4f}'.format(table[2][i]), end = '')
         if table[3][i] == '----':
             print('│{:^10}'.format(table[3][i]), end = '')
         else:
@@ -142,6 +141,7 @@ def print_table(table):
             print('│{:^10}'.format(table[7][i]), end = '')
         else:
             print('│{:^10.4f}'.format(table[7][i]), end = '')
+        print('│{:^10.4f}'.format(table[2][i]), end = '')
         print('│')
 
 
