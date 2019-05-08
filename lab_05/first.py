@@ -1,20 +1,21 @@
+from math import fabs
+
 def find_root(f, start, finish, eps):
     if (start > finish):
         start, finish = finish, start
     left = start
     right = finish
     left_function = f(left)
-    right_function = f(right)
-    while right - left >= eps:
+    mid = (right + left) / 2
+    while fabs((right - left) / mid) >= eps:
         mid = (right + left) / 2
         mid_function = f(mid)
         if left_function * mid_function <= 0:
             right = mid
-            right_function = mid_function
             continue
         left = mid
         left_function = mid_function
-    return (right + left) / 2
+    return mid
 
 
 

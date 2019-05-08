@@ -70,7 +70,7 @@ def times_mat_vec(mat, vec):
 
 
 def Gamma(G, T, val):
-    a = 5.87 * 10 ** 10 / (T ** 3)
+    a = 5.87e+10 / (T ** 3)
     ev = exp(val[0])
     e2 = exp(val[2])
     e3 = exp(val[3])
@@ -88,7 +88,7 @@ def find_gamma(T, val):
 
 
 def alpha(T, val):
-    return 0.285 * 10 ** (-11) * (find_gamma(T, val) * T) ** 3
+    return 0.285e-11 * (find_gamma(T, val) * T) ** 3
 
 
 
@@ -121,10 +121,10 @@ def equations(x, T, p):
 
 
 def P(p_start, t_start, t0, t2, m, z, p):
-    x_old = [0] * 6
+    x_old = [1] * 6
     T = t0 + (t2 - t0) * z ** m
     global x_global
-    while fabs(x_old[0] - x_global[0]) >= 1e-4:
+    while fabs((x_old[0] - x_global[0]) / x_old[0]) >= 1e-4:
         for i in range(len(x_global)):
             x_old[i] = x_global[i]
         mat = [[1, -1, 1, 0, 0, 0],
